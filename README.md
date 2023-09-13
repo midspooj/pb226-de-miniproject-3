@@ -11,11 +11,11 @@ In mini-project 3, my primary focus was on testing and leveraging two core featu
    Polars adopts a lazy evaluation approach, deferring the execution of operations until their results are explicitly required. This methodology contributes to more efficient memory utilization, especially beneficial in scenarios involving complex data processing pipelines.
 
 ## Dataset Selection
-To rigorously test these features, we deliberately opted for a substantially large dataset sourced from Kaggle, which served as an excellent benchmark for evaluating the prowess of Polars in comparison to other data manipulation libraries.
+To rigorously test these features, I opted for a substantially large dataset sourced from Kaggle, which served as a benchmark for evaluating the prowess of Polars in comparison to other data manipulation libraries.
 
 # Dataset Overview
 
-This dataset provides detailed information on the COVID-19 pandemic, including metrics such as deaths, recoveries, active cases, and more, categorized by WHO regions. Sourced from Kaggle and focusing on the year 2022, it serves as a robust foundation for comprehensive global COVID-19 analysis. The aim is to uncover trends and patterns in the relationships between deaths, recoveries, and active cases worldwide.
+This dataset provides detailed information on the COVID-19 pandemic, including metrics such as deaths, recoveries, active cases, and more, categorized by WHO regions. Sourced from Kaggle and focusing on the year 2022, it serves as a foundation for comprehensive global COVID-19 analysis. The aim is to uncover trends and patterns in the relationships between deaths, recoveries, and active cases worldwide.
 
 # Purpose of the Code
 
