@@ -3,7 +3,7 @@ import polars as pl
 
 def test_generate_scatter_plot():
     # Define the CSV path for testing
-    test_csv_path = "path_to_your_test_csv_file.csv"
+    test_csv_path = "https://raw.githubusercontent.com/midspooj/pb226-de-miniproject-3/main/country_wise_latest.csv"
 
     # Call the function and capture the returned values
     plot, summary_stats = generate_scatter_plot(test_csv_path)
@@ -26,17 +26,3 @@ test_generate_scatter_plot()
     
     
 
-
-    # Check if data is a DataFrame
-    assert isinstance(data, pd.DataFrame), "data should be a pandas DataFrame"
-
-    # Check if chart is a Seaborn plot object
-    assert isinstance(chart, so.Plot), "chart should be a Seaborn plot object"
-
-    # Check if the data DataFrame has been modified correctly
-    assert "Log GDP Per Capita" in data.columns, "Log GDP Per Capita column missing"
-
-    
-
-# Run the testing function
-test_analyze_world_indicators()
