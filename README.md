@@ -39,7 +39,7 @@ The function `generate_scatter_plot` takes a CSV file path as input.
 
 ## Displaying the Summary Stats
 
-- The summary statistics are returned as a DataFrame. You can uncomment the lines to print them if needed.
+- The summary statistics are returned as a DataFrame. 
 
 #   Results 
 The summary statistics generated are as follows:
