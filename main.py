@@ -38,7 +38,7 @@ def generate_scatter_plot(csv_path):
     return plt, summary_stats
 
 # Call the function with the actual path to your CSV file
-csv_path = r'C:\Users\19l20\Desktop\country_wise_latest.csv'
+csv_path = r'https://raw.githubusercontent.com/midspooj/pb226-de-miniproject-3/main/country_wise_latest.csv'
 # generate_scatter_plot(csv_path)
 plot, summary_stats = generate_scatter_plot(csv_path)
 
