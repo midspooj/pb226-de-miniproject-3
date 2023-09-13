@@ -1,94 +1,77 @@
-# National Income and Infant Mortality
+# Data Handling With Polars - A COVID-19 Example
 
-## Data Source
+## Introduction
 
-The relationship between a country's GDP per capita (a measure of average income per person) and infant mortality (in particular, the share of every 1,000 children born who do not reach their fifth birthday) is analyzed. You can access the data from the following URL: [World Development Indicators 2015 Dataset](https://media.githubusercontent.com/media/nickeubank/MIDS_Data/master/World_Development_Indicators/wdi_small_tidy_2015.csv).
+In mini-project 3, my primary focus was on testing and leveraging two core features of Polars:
 
-## Purpose of the Code
+1. **Performance Optimization**  
+   Polars is meticulously engineered for high-performance data manipulation, showcasing remarkable efficiency in handling extensive datasets. It's robust capabilities surpass those of traditional libraries like Pandas, making it an excellent choice for large-scale data processing.
 
-The purpose of this code is to analyze World Development Indicators data, specifically focusing on the relationship between income (measured by GDP per capita) and health outcomes (measured by the under-5 mortality rate) across different countries.
+2. **Lazy Evaluation Strategy**  
+   Polars adopts a lazy evaluation approach, deferring the execution of operations until their results are explicitly required. This methodology contributes to more efficient memory utilization, especially beneficial in scenarios involving complex data processing pipelines.
 
-## Code Overview
+## Dataset Selection
+To rigorously test these features, we deliberately opted for a substantially large dataset sourced from Kaggle, which served as an excellent benchmark for evaluating the prowess of Polars in comparison to other data manipulation libraries.
 
-The purpose of this code is to analyze World Development Indicators data, specifically focusing on the relationship between income (measured by GDP per capita) and health outcomes (measured by the under-5 mortality rate) across different countries.
+# Dataset Overview
 
-### 1. Import Libraries:
+This dataset provides detailed information on the COVID-19 pandemic, including metrics such as deaths, recoveries, active cases, and more, categorized by WHO regions. Sourced from Kaggle and focusing on the year 2022, it serves as a robust foundation for comprehensive global COVID-19 analysis. The aim is to uncover trends and patterns in the relationships between deaths, recoveries, and active cases worldwide.
 
-pandas (abbreviated as pd) for data manipulation.  
+# Purpose of the Code
 
-numpy (abbreviated as np) for numerical operations.  
+This code conducts a data analysis on COVID-19 statistics obtained from a supplied CSV file. It creates a scatter plot to visually represent the correlations between confirmed cases, deaths, recoveries, and active cases. Furthermore, it calculates summary statistics for these essential metrics.
 
-seaborn.objects (abbreviated as so) for creating statistical visualizations.
- 
-### 2. Function: analyze_world_indicators(csv_url):
+## Data Reading and Scatter Plotting
 
-#### Parameters:
+The function `generate_scatter_plot` takes a CSV file path as input.
 
-csv_url (str): The URL of the CSV file containing World Development Indicators data.
+- It reads the data from the CSV using Polars and generates a scatter plot using Matplotlib.
+- Three scatter plots are created:
+  - Deaths vs Confirmed (in blue)
+  - Recovered vs Confirmed (in green)
+  - Active vs Confirmed (in red).
+- The plot is displayed with appropriate labels and legend.
 
-#### Functionality:
+## Data Processing and Summary Statistics
 
-Downloads the World Development Indicators data from the provided CSV URL.  
+- The relevant columns (Confirmed, Deaths, Recovered, Active) are selected using Polars.
+- Summary statistics are calculated for these selected columns using `df.describe()`.
 
-Applies a logarithmic transformation to the "GDP per capita" column for improved readability.   
+## Displaying the Summary Stats
 
-Generates a scatter plot visualizing the relationship between log GDP per capita and under-5 mortality rate.
+- The summary statistics are returned as a DataFrame. You can uncomment the lines to print them if needed.
 
-#### Returns:
+#   Results 
+The summary statistics generated are as follows:
+| describe   | Confirmed     | Deaths       | Recovered     | Active        |
+| ---        | ---           | ---          | ---           | ---           |
+| str        | f64           | f64          | f64           | f64           |
+|------------|---------------|--------------|---------------|---------------|
+| count      | 187.0         | 187.0        | 187.0         | 187.0         |
+| null_count | 0.0           | 0.0          | 0.0           | 0.0           |
+| mean       | 88130.935829  | 3497.518717  | 50631.481283  | 34001.935829  |
+| std        | 383318.663831 | 14100.002482 | 190188.189643 | 213326.173371 |
+| min        | 10.0          | 0.0          | 0.0           | 0.0           |
+| 25%        | 1100.0        | 18.0         | 607.0         | 140.0         |
+| 50%        | 5059.0        | 108.0        | 2815.0        | 1600.0        |
+| 75%        | 41180.0       | 748.0        | 23242.0       | 9414.0        |
+| max        | 4.290259e6    | 148011.0     | 1.846641e6    | 2.816444e6    |  
 
-wdi (pd.DataFrame): The DataFrame containing the analyzed data.  
+This is the generated scatterplot for this dataset:  
 
-my_chart (so.Plot()): The chart created using seaborn.objects
+![image](https://github.com/midspooj/pb226-de-miniproject-3/assets/142264378/14e74138-1a07-4c4c-b7f3-44dbd50ccdc2)  
 
-### 3. Example Usage:
+# Key Takeaways
 
-3.1 Demonstrates how to utilize the analyze_world_indicators function by providing a sample CSV URL.  
-
-3.2 Captures the returned DataFrame (data) and plot (chart).  
-
-3.3 Prints summary statistics of the data using data.describe().
-
-
-## Results
-
-After executing the code, the following descriptive statistics were obtained:
-
-|                     | Log GDP Per Capita |
-|---------------------|------------------|
-| Count               | 198              |
-| Mean                | 8.6996           |
-| Std                 | 1.4680           |
-| Min                 | 5.4312           |
-| 25%                 | 7.5199           |
-| 50% (Median)        | 8.7218           |
-| 75%                 | 9.7787           |
-| Max                 | 12.1520          |
-
-| Mortality Rate (per 1,000 live births) |
-|---------------------------------------|
-| Count                                 | 193                                   |
-| Mean                                  | 31.2964                               |
-| Std                                   | 31.4032                               |
-| Min                                   | 2.3                                   |
-| 25%                                   | 8.0                                   |
-| 50% (Median)                          | 17.3                                  |
-| 75%                                   | 48.7                                  |
-| Max                                   | 135.6                                 |
+This assignment provided valuable insights into the significance of Polars, particularly its efficiency in handling large datasets. It served as a practical demonstration of how to choose the appropriate library for specific dataset sizes and complexities, highlighting the importance of selecting the right tool for efficient data manipulation and analysis.
 
 
 
-The summary statistics is made available for all the columns in the csv file.  
-Here, the summary statistics offers valuable insights that can be used in correlation analysis, outlier detection, and other potential research directions.  
-In outlier detection, for instance, countries with exceptionally high or low values in both variables are identified. These outliers may be interesting for further investigation as they could provide insights into unique economic or health situations.
-
-The visualization below illustrates the relationship between the predictor variable (Log GDP Per Capita) and Infant Mortality Rate.
-
-![image](https://github.com/midspooj/pb226-de-miniproject-2/assets/142264378/f007767e-5b32-48a6-a00e-80b2fca73acd)
 
 
-## Conclusion
 
-This script helps us understand how a country's economic well-being (measured by log GDP per capita) is related to its infant mortality rate. It also provides basic statistics that are vital for further investigation.
 
-This analysis is important because it sheds light on the potential connection between a nation's wealth and the health of its youngest citizens. It can help identify patterns and disparities, informing policies and interventions aimed at improving infant well-being globally.
+
+
+
 
