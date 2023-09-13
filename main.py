@@ -32,13 +32,13 @@ def generate_scatter_plot(csv_path):
     
     # Calculate summary statistics
     summary_stats = df.describe()
-    print(summary_stats)
-    print("sd")
+    # print(summary_stats)
+    # print("sd")
 
     return plt, summary_stats
 
 # Call the function with the actual path to your CSV file
-csv_path = r'https://raw.githubusercontent.com/midspooj/pb226-de-miniproject-3/main/country_wise_latest.csv'
+og_csv_path = r'https://raw.githubusercontent.com/midspooj/pb226-de-miniproject-3/main/country_wise_latest.csv'
 # generate_scatter_plot(csv_path)
-plot, summary_stats = generate_scatter_plot(csv_path)
+plot, og_summary_stats = generate_scatter_plot(csv_path)
 
