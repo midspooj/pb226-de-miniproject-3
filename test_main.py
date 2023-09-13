@@ -15,7 +15,7 @@ def test_generate_scatter_plot():
     assert isinstance(summary_stats, pl.DataFrame), "summary_stats should be a polars DataFrame"
 
     # Check if summary_stats has the expected number of columns
-    expected_num_columns = 4  # Assuming there are 4 columns in the summary
+    expected_num_columns = 5  # Assuming there are 4 columns in the summary
     assert len(summary_stats.columns) == expected_num_columns, f"summary_stats should have {expected_num_columns} columns"
 
     # Check if summary_stats has at least one row
