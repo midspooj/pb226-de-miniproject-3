@@ -40,5 +40,5 @@ def generate_scatter_plot(csv_path):
 # Call the function with the actual path to your CSV file
 og_csv_path = r'https://raw.githubusercontent.com/midspooj/pb226-de-miniproject-3/main/country_wise_latest.csv'
 # generate_scatter_plot(csv_path)
-plot, og_summary_stats = generate_scatter_plot(csv_path)
+plot, og_summary_stats = generate_scatter_plot(og_csv_path)
 
