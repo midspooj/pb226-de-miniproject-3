@@ -19,7 +19,7 @@ This dataset provides detailed information on the COVID-19 pandemic, including m
 
 # Purpose of the Code
 
-This code conducts a data analysis on COVID-19 statistics obtained from a supplied CSV file. It creates a scatter plot to visually represent the correlations between confirmed cases, deaths, recoveries, and active cases. Furthermore, it calculates summary statistics for these essential metrics.
+This code conducts a data analysis on COVID-19 statistics obtained from a supplied CSV file. It creates a scatter plot to visually represent the correlations between confirmed cases, deaths, recoveries, and active cases. Furthermore, it calculates summary statistics for these essential metrics using Polars.
 
 ## Data Reading and Scatter Plotting
 
