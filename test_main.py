@@ -1,28 +1,28 @@
-# -*- coding: utf-8 -*-
+from polars_de import generate_scatter_plot
+import polars as pl
 
-"""
-TESTS goes here
-"""
-
-
-from main import analyze_world_indicators
-import seaborn.objects as so
-import pandas as pd
-# import numpy as np
-# import seaborn as sns
-# import matplotlib.pyplot as plt
-
-
-
-def test_analyze_world_indicators():
-    # Define the CSV URL for testing
-    test_csv_url = "https://media.githubusercontent.com/media/nickeubank/MIDS_Data/master/World_Development_Indicators/wdi_small_tidy_2015.csv"
-
-
+def test_generate_scatter_plot():
+    # Define the CSV path for testing
+    test_csv_path = "path_to_your_test_csv_file.csv"
 
     # Call the function and capture the returned values
-    data, chart = analyze_world_indicators(test_csv_url)
+    plot, summary_stats = generate_scatter_plot(test_csv_path)
 
+    # Check if plot is not None
+    assert plot is not None, "plot should not be None"
+
+    # Check if summary_stats is a DataFrame
+    assert isinstance(summary_stats, pl.DataFrame), "summary_stats should be a polars DataFrame"
+
+    # Check if summary_stats has the expected number of columns
+    expected_num_columns = 4  # Assuming there are 4 columns in the summary
+    assert len(summary_stats.columns) == expected_num_columns, f"summary_stats should have {expected_num_columns} columns"
+
+    # Check if summary_stats has at least one row
+    assert len(summary_stats) >= 1, "summary_stats should have at least one row"
+
+# Run the testing function
+test_generate_scatter_plot()
     
     
 
