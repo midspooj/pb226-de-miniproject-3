@@ -1,36 +1,44 @@
-import pandas as pd
-import numpy as np
-import seaborn.objects as so
+import polars as pl
+import matplotlib.pyplot as plt
 
-
-# from matplotlib import style
-
-def analyze_world_indicators(csv_url):
-    # Download World Development Indicators
-    wdi = pd.read_csv(csv_url)
-
-    # GDP Per Capita has a REALLY long right tail, so we want to log it for readability.
-    wdi["Log GDP Per Capita"] = np.log(wdi["GDP per capita (constant 2010 US$)"])
-
-    # Plot
-    my_chart = (
-        so.Plot(
-            wdi, x="Log GDP Per Capita", y="Mortality rate, under-5 (per 1,000 live births)"
-        )
-        # .add(so.Line(), so.PolyFit(order=2))
-        .add(so.Dot())
-        .label(title="Log GDP and Under-5 Mortality")
-        # .theme({**style.library["seaborn-whitegrid"]})
-    )
+def generate_scatter_plot(csv_path):
+    # Assuming you have a CSV file with the COVID-19 data.
+    df = pl.read_csv(csv_path) 
     
-    my_chart.show()
+    plt.figure(figsize=(10, 6))
 
-    return wdi, my_chart
+    # Scatter plot for Deaths vs Confirmed
+    plt.scatter(df["Confirmed"], df["Deaths"], color='blue', label='Deaths')
+    
+    # Scatter plot for Recovered vs Confirmed
+    plt.scatter(df["Confirmed"], df["Recovered"], color='green', label='Recovered')
+    
+    # Scatter plot for Active vs Confirmed
+    plt.scatter(df["Confirmed"], df["Active"], color='red', label='Active')
 
-# Example usage
-csvurl = "https://media.githubusercontent.com/media/nickeubank/MIDS_Data/master/World_Development_Indicators/wdi_small_tidy_2015.csv"
-data, chart = analyze_world_indicators(csvurl)
+    plt.title("Scatter Plot for COVID-19 Cases")
+    plt.xlabel("Confirmed")
+    plt.ylabel("Counts")
+    plt.legend()
+    plt.tight_layout()
+    plt.show()
+    
+    #get the summary stats for the four columns
+    
+    # df = pl.read_csv(csv_path)
+    
+    # Selecting relevant columns
+    df = df.select(["Confirmed", "Deaths", "Recovered", "Active"])
+    
+    # Calculate summary statistics
+    summary_stats = df.describe()
+    print(summary_stats)
+    print("sd")
 
-# Print some statistical data
-print(data.describe())
+    return plt, summary_stats
+
+# Call the function with the actual path to your CSV file
+csv_path = r'C:\Users\19l20\Desktop\country_wise_latest.csv'
+# generate_scatter_plot(csv_path)
+plot, summary_stats = generate_scatter_plot(csv_path)
 
