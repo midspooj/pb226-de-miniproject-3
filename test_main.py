@@ -1,4 +1,4 @@
-from polars_de import generate_scatter_plot
+from main import generate_scatter_plot
 import polars as pl
 
 def test_generate_scatter_plot():
